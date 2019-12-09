@@ -16,6 +16,7 @@
     <strong>{{edad}}</strong>
 
     <p class="alert-danger-provisional" v-if="edad >= 18">Adulto !!!</p>
+    <p class="alert-success" v-else>Menor</p>
 
     <h2>Directiva iterativa</h2>
 
@@ -28,14 +29,14 @@
 
 <script>
 export default {
-  name: "MyComponent",
+  name: "MyComponent", 
   data() {
     return {
       titulo: "Mi Componente",
       subtitle: "Subtitle from NewComponent",
       nombre: "",
       edad: 18,
-      peliculas: ['Batman', 'lol', 'darkSouls']
+      peliculas: ['Batman', 'lol', 'darkSouls', 'fornite'] 
     };
   }
 };

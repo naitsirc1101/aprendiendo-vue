@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <Slider texto="Pagina de pruebas"></Slider>
+    <div class="center">
   <section id="content">
     <h2 class="subheader">Page Test</h2>
     <h3>{{ id_desde_url }}</h3>
@@ -7,11 +10,22 @@
 
     <h4>{{ nombre }}</h4>
   </section>
+        <Sidebar></Sidebar>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </template>
 
 <script>
+import Slider from "./sliders";
+import Sidebar from "./sidebar";
+
 export default {
   name: "PageComponent",
+    components: {
+    Sidebar,
+    Slider
+  },
   created() {
     console.log("componente Creado");
   },

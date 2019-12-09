@@ -1,11 +1,27 @@
 <template>
-    <section id="content">
+  <div>
+    <Slider 
+      texto="Blog"
+    ></Slider>
+    <div class="center">
+      <section id="content">
         <h2 class="subheader">Blog</h2>
-    </section>
+      </section>
+      <Sidebar></Sidebar>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </template>
 
 <script>
+import Slider from "./sliders";
+import Sidebar from "./sidebar";
+
 export default {
-    name:'BlogComponent' 
-}
+  name: "BlogComponent",
+  components: {
+    Sidebar,
+    Slider
+  }
+};
 </script>

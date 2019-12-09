@@ -1,16 +1,11 @@
 <template>
   <div id="app">
     <HeaderComponent></HeaderComponent>
-    <Slider></Slider>
-    <div class="center">
+      
+    
+        <router-view></router-view>
 
-
-    <!-- <lastArticles></lastArticles> -->
-      <router-view></router-view>
-
-      <Sidebar></Sidebar>
-      <div class="clearfix"></div>
-    </div>
+        
     <footerComponent></footerComponent>
   </div>
 </template>
@@ -19,8 +14,8 @@
 //import HelloWorld from "./components/HelloWorld.vue";
 //import MyComponent from "./components/myComponent";
 import HeaderComponent from "./components/header-component";
-import Slider from "./components/sliders";
-import Sidebar from "./components/sidebar";
+// import Slider from "./components/sliders";
+// import Sidebar from "./components/sidebar";
 // import lastArticles from "./components/lastArticles";
 import footerComponent from "./components/footerComponent";
 
@@ -30,8 +25,8 @@ export default {
     //  HelloWorld,
     //MyComponent,
     HeaderComponent,
-    Slider,
-    Sidebar,
+    // Slider,
+    // Sidebar,
    // lastArticles,
     footerComponent
   }

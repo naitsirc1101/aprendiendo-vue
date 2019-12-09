@@ -28,6 +28,22 @@ body {
     float:none;
 }
 
+.yeargreen {
+    background: green !important;
+    color: white !important;
+    padding: 10px !important;
+    width: 111px !important;
+    text-align: center !important;
+}
+
+.yearred {
+    background: red !important;
+    color: white !important;
+    padding: 10px !important;
+    width: 111px !important;
+    text-align: center !important;
+}
+
 #logo {
     width: 30%;
     font-size: 30px;
@@ -262,6 +278,10 @@ textarea{
 
 .alert-danger-provisional {
     color:red; font-weight:bold
+}
+
+.alert-success {
+    color:green; font-weight:bold
 }
 
 #footer{
