@@ -6,6 +6,8 @@
 
         <div class="mis-datos" v-if="misDatos">
           <p v-html="misDatos">{{misDatos}}</p>
+          <br>
+          {{ web | mayusculas | concatenaYear('Este es el mejor año')}}
         </div>
 
 
@@ -46,6 +48,15 @@ export default {
       console.log(favorita);
       // alert('se ha ejecutado evento en padre');
       this.favorita = favorita;
+    }
+  },
+  filters: {
+    mayusculas(value) {
+      return value.toUpperCase();
+    },
+       concatenaYear(value, message) {
+         var date = new Date();
+      return value + ' ' + date.getFullYear() + ' ' + message;
     }
   },
   computed: {
