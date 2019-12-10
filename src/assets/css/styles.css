@@ -18,6 +18,10 @@ body {
     border-top: 5px solid #09a330;
 }
 
+.edit-image {
+    width: 100px;
+}
+
 .center{
     width: 75%;
     margin: 0px auto;
@@ -226,6 +230,19 @@ body {
 
 .btn-success{
     background: rgb(23, 150, 19);
+}
+
+.btn-warning{
+    background: rgb(255, 179, 0);
+    color: white !important;
+    text-align: center;
+}
+
+.btn-danger{
+    background: rgb(182, 26, 26);
+    color: white !important;
+    text-align: center;
+
 }
 
 .btn-success:hover{

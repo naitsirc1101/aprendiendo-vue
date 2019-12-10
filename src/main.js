@@ -16,6 +16,8 @@ import PageComponent from '../src/components/pageComponent';
 import ErrorComponent from '../src/components/ErrorComponent';
 import Redirect from "../src/components/redirect";
 import Peliculas from '../src/components/peliculas';
+import ShowArticles from '../src/components/showArticles'
+import EditArticle from '../src/components/editArticle'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -32,11 +34,13 @@ const routes = [
   {path: '/search/:search', component: SearchComponent},
   {path: '/crear-articulo', name: 'create', component: CreateArticle},
   {path: '/peliculas', name: 'Peliculas', component: Peliculas},
+  {path: '/edit/:id?', name: 'edit', component: EditArticle},
   {path: '/hello-world', component: HelloWorld},
   {path: '/form', component: FormComponent},
   {path: '/blog', component: BlogComponent},
   {path: '/redirect/:searchString', component: Redirect},
   {path: '/page/:id?', name: 'page', component: PageComponent},
+  {path: '/show-articles/:id?', component: ShowArticles},
   {path: '/', component: lastArticles},
   {path: '*', component: ErrorComponent},
 

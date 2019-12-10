@@ -9,7 +9,7 @@ import axios from "axios";
 import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: "CreateArticle",
+  name: "EditArticle",
   components: {
     Sidebar
   },
@@ -17,11 +17,15 @@ export default {
     return {
       article: new Article("", "", null, ""),
       submitted: false,
-      file: ""
+      file: "",
+      isEdit: true
     };
   },
   mounted() {
-    console.log(this.article);
+    var articleId = this.$route.params.id;
+    console.log(articleId);
+    this.getLastArticles(articleId);
+    //  this.deleteArticle(articleId)
   },
   validations: {
     article: {
@@ -34,11 +38,21 @@ export default {
     }
   },
   methods: {
+    getLastArticles(articleId) {
+      axios.get(`${Global.urlBack}/article/${articleId}`).then(res => {
+        if (res.data.status == "success") {
+          this.article = res.data.article;
+          //   console.log(this.articles, "Articles");
+        }
+        console.log(res, "El res en edit");
+      });
+    },
     fileChange() {
       this.file = this.$refs.file.files[0];
       console.log(this.file);
     },
     save() {
+      var articleId = this.$route.params.id;
       this.submitted = true;
 
       this.$v.$touch();
@@ -46,7 +60,7 @@ export default {
         return false;
       } else {
         axios
-          .post(`${Global.urlBack}/save`, this.article)
+          .put(`${Global.urlBack}/article/${articleId}`, this.article)
           .then(res => {
             if (res.data) {
               const formData = new FormData();
@@ -63,8 +77,8 @@ export default {
                   .then(res => {
                     if (res.data.article) {
                       swal(
-                        "Articulo creado",
-                        "El articulo se ha creado correctamente",
+                        "Articulo editado",
+                        "El articulo se ha editado correctamente",
                         "success"
                       );
 
@@ -72,8 +86,8 @@ export default {
                       this.$router.push("/show-articles");
                     } else {
                       swal(
-                        "No se ha creado el articulo",
-                        "El articulo no se ha creado correctamente",
+                        "No se ha editado el articulo",
+                        "El articulo no se ha editado correctamente",
                         "error"
                       );
                     }
@@ -83,8 +97,8 @@ export default {
                   });
               } else {
                 swal(
-                  "Articulo creado",
-                  "El articulo se ha creado correctamente",
+                  "Articulo editado",
+                  "El articulo se ha editado correctamente",
                   "success"
                 );
 
@@ -98,6 +112,27 @@ export default {
             console.log(error);
           });
       }
+    },
+    deleteArticle(articleId) {
+      swal({
+        title: "Are you sure?",
+        text:
+          "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          axios.delete(`${Global.urlBack}/article/${articleId}`).then(() => {
+            this.$router.push("/show-articles");
+          });
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success"
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
     }
   }
 };
