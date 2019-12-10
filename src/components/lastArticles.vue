@@ -9,23 +9,9 @@
     <div class="center">
       <section id="content">
         <h2 class="subheader">Últimos artículos</h2>
-
+            <Animes :animes="animes"></Animes>
         <!--Listado articulos-->
         <div id="articles">
-          <article class="article-item" id="article-template">
-            <div class="image-wrap">
-              <img
-                src="https://unhabitatmejor.leroymerlin.es/sites/default/files/styles/header_category/public/2018-10/4%20paisaje%20macedonia.jpg?itok=AELknmF8"
-                alt="Paisaje"
-              />
-            </div>
-
-            <h2>Articulo de prueba</h2>
-            <span class="date">Hace 5 minutos</span>
-            <a href="#">Leer más</a>
-
-            <div class="clearfix"></div>
-          </article>
 
           <!--AÑADIR ARTICULOS VIA JS-->
         </div>
@@ -41,13 +27,38 @@
 
 import Slider from "./sliders";
 import Sidebar from "./sidebar";
+import Animes from "./animes"
+import axios from "axios"
+import Global from "../global"
 
 
 export default {
   name: "lastArticles",
-    components: {
-    Slider,
+     components: {
     Sidebar,
+    Slider,
+    Animes
+  },
+  mounted() {
+    this.getLastArticles();
+  },
+  data() {
+    return {
+      animes: []
+    };
+  },
+  methods: {
+    getLastArticles() {
+      axios
+        .get(`${Global.url}/anime/1/news`)
+        .then(res => {
+          if (res.data.articles.length > 0) {
+            this.animes = res.data.articles;
+            // console.log(this.animes);
+          }
+          console.log(res);
+        });
+    }
   }
 };
 </script>

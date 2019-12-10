@@ -1,15 +1,22 @@
 <template>
   <div>
-    <Slider texto="Blog"></Slider>
+    <Slider :texto="'Busqueda: ' + searchString"></Slider>
     <div class="center">
       <section id="content">
-        <h1 class="subheader">Blog</h1>
+        <h1 class="subheader" v-if="animes">Busqueda</h1>
+        <h1 class="subheader" v-else>Sin resultados</h1>
+
 
         <div id="articles" v-if="animes">
          
           <Animes :animes="animes"></Animes>
           <!--AÑADIR ARTICULOS VIA JS-->
         </div>
+        <div v-else>
+            No hay contenido que coincidan con la busqueda
+        </div>
+
+
       </section>
       <Sidebar></Sidebar>
       <div class="clearfix"></div>
@@ -25,24 +32,28 @@ import Slider from "./sliders";
 import Sidebar from "./sidebar";
 
 export default {
-  name: "BlogComponent",
+  name: "SearchComponent",
   components: {
     Sidebar,
     Slider,
     Animes
   },
   mounted() {
-    this.getArticles();
+      this.searchString = this.$route.params.search;
+      console.log(this.searchString, "XXDDDDDDDDD");
+    // var searchString = 'Naruto'
+    this.getArticlesBySearch(this.searchString);
   },
   data() {
     return {
-      animes: []
+      animes: [],
+      searchString: null,
     };
   },
   methods: {
-    getArticles() {
+    getArticlesBySearch(searchString) {
       axios
-        .get(`${Global.url}/search/anime?q=dragon ball&limit=16`)
+        .get(`${Global.url}/search/anime?q=` + searchString)
         .then(res => {
           if (res.data.results.length > 0) {
             this.animes = res.data.results;
